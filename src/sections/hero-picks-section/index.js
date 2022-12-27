@@ -2,10 +2,11 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import SelectedPane from "../../components/selected-pane";
 import SelectionColumn from "../../components/selection-column";
-const HeroPickSection = () => {
+const HeroPickSection = ({clickedHero ,appRunning}) => {
+
   return (
     <View style={styles.container}>
-      <SelectedPane heroType={"strength"}/>
+      <SelectedPane clickedHero={clickedHero} appRunning={appRunning}/>
       <SelectionColumn/>
     </View>
   );

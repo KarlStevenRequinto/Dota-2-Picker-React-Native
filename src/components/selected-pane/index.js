@@ -1,16 +1,32 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SelectionButton from '../selection-button';
 
-const SelectedPane = ({ heroType }) => {
+const SelectedPane = ({ clickedHero, appRunning }) => {
+  const hero = clickedHero;
+  if (appRunning) {
+    console.log(hero);
+  }
+  const heroType = hero ? hero.primary_attr : null;
+  const heroTypeClicked =
+    heroType === 'str'
+      ? 'strength'
+      : heroType === 'agi'
+      ? 'agility'
+      : heroType === 'int'
+      ? 'intelligence'
+      : null;
   return (
     <View style={styles.container}>
-      <Image
-        source={{
-          uri: require(`../../../assets/images/hero-types-icons/${heroType}.png`),
-        }}
-        style={styles.icon}
-      />
+      {heroTypeClicked && (
+        <Image
+          source={{
+            uri: require(`../../../assets/images/hero-types-icons/${heroTypeClicked}.png`),
+          }}
+          style={styles.icon}
+        />
+      )}
+
       <View style={styles.btnContainer}>
         <SelectionButton title="Team" />
         <SelectionButton title="Ban" />
@@ -31,9 +47,9 @@ const styles = StyleSheet.create({
   icon: {
     width: 40,
     height: 40,
-    position:"absolute",
-    top:4,
-    left:4
+    position: 'absolute',
+    top: 4,
+    left: 4,
   },
   btnContainer: {
     flexDirection: 'row',

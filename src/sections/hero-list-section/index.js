@@ -4,68 +4,12 @@ import HeroList from '../../mock-data/mock-hero-list';
 import HeroContainer from '../../components/hero-container';
 import ListHeader from '../../components/list-header';
 
-const HeroListSection = ({pickedHero}) => {
-  const [HeroesList, setHeroesList] = useState([]);
-  const [clickedHero, setClickedHero] = useState();
-
-  useEffect(() => {
-    var requestOptions = {
-      method: 'GET',
-      redirect: 'follow',
-    };
-    try {
-      fetch('https://api.opendota.com/api/heroStats', requestOptions)
-        .then((response) => response.json())
-        .then((result) => {
-          setHeroesList(result);
-          // console.log(result);
-        });
-    } catch (error) {
-      console.log('error', error);
-    }
-  }, []);
-
-  const strHeroes = HeroesList.filter(
-    (hero) => hero.primary_attr === 'str'
-  ).sort((a, b) => {
-    if (a.localized_name < b.localized_name) {
-      return -1;
-    }
-    if (a.localized_name > b.localized_name) {
-      return 1;
-    }
-    return 0;
-  });
-
-  const agiHeroes = HeroesList.filter(
-    (hero) => hero.primary_attr === 'agi'
-  ).sort((a, b) => {
-    if (a.localized_name < b.localized_name) {
-      return -1;
-    }
-    if (a.localized_name > b.localized_name) {
-      return 1;
-    }
-    return 0;
-  });
-
-  const intHeroes = HeroesList.filter(
-    (hero) => hero.primary_attr === 'int'
-  ).sort((a, b) => {
-    if (a.localized_name < b.localized_name) {
-      return -1;
-    }
-    if (a.localized_name > b.localized_name) {
-      return 1;
-    }
-    return 0;
-  });
-
-  const pickedHeroHandler = (pickedItem) => {
-    setClickedHero(pickedItem);
-    
-  };
-  console.log(clickedHero)
+const HeroListSection = ({
+  pickedHeroHandler,
+  strHeroes,
+  agiHeroes,
+  intHeroes,
+}) => {
   return (
     <View style={styles.container}>
       <View style={{ marginBottom: 20 }}>
@@ -110,6 +54,7 @@ const HeroListSection = ({pickedHero}) => {
                       : item.localized_name.toLowerCase().replace(/\s/g, '_')
                   }
                   containerStyle={styles.imageBox}
+                  onPressHero={() => pickedHeroHandler(item)}
                 />
               );
             }}
@@ -140,6 +85,7 @@ const HeroListSection = ({pickedHero}) => {
                       : name
                   }
                   containerStyle={styles.imageBox}
+                  onPressHero={() => pickedHeroHandler(item)}
                 />
               );
             }}
