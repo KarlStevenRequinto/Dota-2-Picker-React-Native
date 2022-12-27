@@ -1,0 +1,18 @@
+div.Enemy {
+  transform: skewX(-10deg);
+}
+
+div.Team {
+  transform: skewX(10deg);
+}
+
+div.drafted {
+  width: 80px;
+  height: 52px;
+  background-image: radial-gradient(
+    circle at bottom,
+    rgb(92, 92, 92),
+    black 110%
+  );
+  box-shadow: 0px -18px 5px -16px black inset;
+}

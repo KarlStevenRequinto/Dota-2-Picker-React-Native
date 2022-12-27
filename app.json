@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Dota-2-Picker",
-    "slug": "Dota-2-Picker",
+    "name": "DotaDraftApp",
+    "slug": "DotaDraftApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

@@ -1,0 +1,10 @@
+div.trapezoid {
+  transform: rotate(180deg);
+  height: 80px;
+  width: 120px;
+  transform: rotate(180deg);
+  clip-path: polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%);
+  background-image: url(../../../assets/images/dota-nav-background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
