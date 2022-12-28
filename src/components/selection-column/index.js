@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
-import SelectionList from '../selection-list';
-import HeroList from '../../mock-data/mock-hero-list';
-import HeroContainer from '../hero-container';
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import SelectionList from "../selection-list";
+import HeroList from "../../mock-data/mock-hero-list";
+import HeroContainer from "../hero-container";
 
 const SelectionColumn = () => {
   const coreSuggestions = HeroList.filter(
@@ -16,7 +16,16 @@ const SelectionColumn = () => {
   );
 
   return (
-    <View style={{ flexDirection: 'row', width: '100%' }}>
+    <View
+      style={{
+        flexDirection: "row",
+        width: "100%",
+        overflow: "hidden",
+        backgroundColor: "blue",
+        flex: 0.7,
+        // height: 500,
+      }}
+    >
       <SelectionList
         title="CORE"
         data={coreSuggestions}
@@ -24,21 +33,21 @@ const SelectionColumn = () => {
           return (
             <HeroContainer
               heroType={item.class.toUpperCase()}
-              heroName={item.name.toLowerCase().replace(/\s/g, '_')}
+              heroName={item.name.toLowerCase().replace(/\s/g, "_")}
               containerStyle={styles.heroBox}
               imageStyle={styles.image}
             />
           );
         }}
       />
-      <SelectionList
+      {/* <SelectionList
         title="SUPPORT"
         data={supportSuggestions}
         suggestList={({ item }) => {
           return (
             <HeroContainer
               heroType={item.class.toUpperCase()}
-              heroName={item.name.toLowerCase().replace(/\s/g, '_')}
+              heroName={item.name.toLowerCase().replace(/\s/g, "_")}
               containerStyle={styles.heroBox}
               imageStyle={styles.image}
             />
@@ -52,13 +61,13 @@ const SelectionColumn = () => {
           return (
             <HeroContainer
               heroType={item.class.toUpperCase()}
-              heroName={item.name.toLowerCase().replace(/\s/g, '_')}
+              heroName={item.name.toLowerCase().replace(/\s/g, "_")}
               containerStyle={styles.heroBox}
               imageStyle={styles.image}
             />
           );
         }}
-      />
+      /> */}
     </View>
   );
 };
@@ -67,12 +76,11 @@ export default SelectionColumn;
 
 const styles = StyleSheet.create({
   heroBox: {
-    width: '100%',
+    width: "100%",
     marginVertical: 1,
-    backgroundColor: 'yellowgreen',
-    
+    backgroundColor: "yellowgreen",
   },
   image: {
-    width: '100%',
+    width: "100%",
   },
 });
