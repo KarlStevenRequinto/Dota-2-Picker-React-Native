@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import "./css-styles.css";
@@ -13,7 +13,7 @@ const DraftedContainer = ({ draftType }) => {
           : "drafted Ban"
       }
     >
-      <View
+      <Pressable
         style={{
           width: 80,
           height: 60,
@@ -34,7 +34,7 @@ const DraftedContainer = ({ draftType }) => {
             },
           ]}
         ></View>
-      </View>
+      </Pressable>
     </div>
   );
 };

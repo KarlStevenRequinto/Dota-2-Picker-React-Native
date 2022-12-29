@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
-const SelectionButton = ({ title }) => {
+const SelectionButton = ({ title,draftHandler }) => {
   return (
     <Pressable
       style={[
@@ -11,6 +11,7 @@ const SelectionButton = ({ title }) => {
             title === 'Team' ? 'green' : title === 'Enemy' ? 'red' : 'grey',
         },
       ]}
+      onPress={draftHandler}
     >
       <Text>{title}</Text>
     </Pressable>

@@ -2,7 +2,7 @@ import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import SelectionButton from "../selection-button";
 
-const SelectedPane = ({ clickedHero, appRunning }) => {
+const SelectedPane = ({ clickedHero, appRunning,draftHandler}) => {
   const hero = clickedHero;
   const heroType = hero ? hero.primary_attr : null;
   const heroName = hero ? hero.localized_name : null;
@@ -36,10 +36,6 @@ const SelectedPane = ({ clickedHero, appRunning }) => {
       ? "anti_mage"
       : heroName.toLowerCase().replace(/\s/g, "_");
 
-  if (appRunning) {
-    console.log(hero);
-    console.log(backgroundImageHeroType, heroNameClicked);
-  }
   return (
     <View style={styles.container}>
       {backgroundImageHeroType && heroNameClicked ? (
@@ -64,9 +60,9 @@ const SelectedPane = ({ clickedHero, appRunning }) => {
       )}
 
       <View style={styles.btnContainer}>
-        <SelectionButton title="Team" />
-        <SelectionButton title="Ban" />
-        <SelectionButton title="Enemy" />
+        <SelectionButton title="Team" draftHandler={(title)=>draftHandler("Team",appRunning && hero)}/>
+        <SelectionButton title="Ban" draftHandler={(title)=>draftHandler("Ban",appRunning && hero)}/>
+        <SelectionButton title="Enemy" draftHandler={(title)=>draftHandler("Enemy",appRunning && hero)}/>
       </View>
     </View>
   );
