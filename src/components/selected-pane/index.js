@@ -2,7 +2,7 @@ import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import SelectionButton from "../selection-button";
 
-const SelectedPane = ({ clickedHero, appRunning,draftHandler}) => {
+const SelectedPane = ({ clickedHero, appRunning, draftHandler }) => {
   const hero = clickedHero;
   const heroType = hero ? hero.primary_attr : null;
   const heroName = hero ? hero.localized_name : null;
@@ -25,16 +25,9 @@ const SelectedPane = ({ clickedHero, appRunning,draftHandler}) => {
       ? "INTELLIGENCE"
       : null;
 
-  const heroNameClicked =
-    heroName === null
-      ? ""
-      : heroName === "nature's_prophet"
-      ? "natures_prophet"
-      : heroName === "outworld_devourer"
-      ? "outworld_destroyer"
-      : heroName === "anti-mage"
-      ? "anti_mage"
-      : heroName.toLowerCase().replace(/\s/g, "_");
+  const heroNameClicked = heroName
+    ? heroName.toLowerCase().replace(/\s/g, "_")
+    : "";
 
   return (
     <View style={styles.container}>
@@ -60,9 +53,18 @@ const SelectedPane = ({ clickedHero, appRunning,draftHandler}) => {
       )}
 
       <View style={styles.btnContainer}>
-        <SelectionButton title="Team" draftHandler={(title)=>draftHandler("Team",appRunning && hero)}/>
-        <SelectionButton title="Ban" draftHandler={(title)=>draftHandler("Ban",appRunning && hero)}/>
-        <SelectionButton title="Enemy" draftHandler={(title)=>draftHandler("Enemy",appRunning && hero)}/>
+        <SelectionButton
+          title="Team"
+          draftHandler={(title) => draftHandler("Team", appRunning && hero)}
+        />
+        <SelectionButton
+          title="Ban"
+          draftHandler={(title) => draftHandler("Ban", appRunning && hero)}
+        />
+        <SelectionButton
+          title="Enemy"
+          draftHandler={(title) => draftHandler("Enemy", appRunning && hero)}
+        />
       </View>
     </View>
   );

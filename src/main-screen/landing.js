@@ -11,7 +11,8 @@ const LandingPage = () => {
   const [teamPick, setTeamPick] = useState([1, 2, 3, 4, 5]);
   const [enemyPick, setEnemyPick] = useState([1, 2, 3, 4, 5]);
   const [banPick, setBanPick] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
-
+  const [teamIndex, setTeamIndex] = useState(0);
+  const [enemyIndex, setEnemyIndex] = useState(0);
   useEffect(() => {
     var requestOptions = {
       method: "GET",
@@ -26,6 +27,7 @@ const LandingPage = () => {
     } catch (error) {
       console.log("error", error);
     }
+    // console.log(teamPick);
   }, []);
 
   const pickedHeroHandler = (pickedItem) => {
@@ -34,21 +36,22 @@ const LandingPage = () => {
   };
 
   const addToDraft = (title, pickedHero) => {
-    console.log(title);
-    console.log(pickedHero);
+    const newTeamPick = [...teamPick];
+    const newEnemyPick = [...enemyPick];
+
+    if (teamIndex > 4 && enemyIndex > 4) {
+      console.log("tama na");
+      return;
+    }
     if (title === "Team") {
-      setTeamPick((teamPickArray) => {
-        const newItem = teamPickArray.map((newPick, i) => {
-          if ((i = index)) {
-            return pickedHero;
-          }
-          return newPick;
-        });
-        return {teamPickArray : newItem}
-      });
+      newTeamPick[teamIndex] = pickedHero;
+      setTeamIndex(teamIndex + 1, console.log(teamIndex));
+      setTeamPick(newTeamPick);
     }
     if (title === "Enemy") {
-      setEnemyPick((enemyPickArray) => [...enemyPickArray, pickedHero]);
+      newEnemyPick[enemyIndex] = pickedHero;
+      setEnemyIndex(enemyIndex + 1, console.log(enemyIndex));
+      setEnemyPick(newEnemyPick);
     }
     if (title === "Ban") {
       setBanPick((banPickArray) => [...banPickArray, pickedHero]);
